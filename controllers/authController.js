@@ -118,3 +118,23 @@ export const loginController = async (req, res) => {
     });
   }
 };
+
+export const testController = (req, res) => {
+  res.send("protected routes ");
+};
+
+export const isAdmin = async (req, res, next) => {
+  try {
+    const user = await userModel.findById(req.user._id);
+    if (user.role !== 1) {
+      res.status(401).send({
+        success: false,
+        message: "unauthorised access",
+      });
+    } else {
+      next();
+    }
+  } catch (e) {
+    console.log(e);
+  }
+};
