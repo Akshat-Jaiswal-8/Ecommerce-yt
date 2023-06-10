@@ -41,6 +41,8 @@
 
 }
 
+
+
 .footerContent{
     display: flex;
     justify-content: space-evenly;
@@ -63,5 +65,46 @@
 
 .footer-heading{
     font-family: 'Poppins', sans-serif;
+    padding: 10px;
 }
 
+.pnf{
+    display: flex;
+    min-height: 65vh;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.pnf-title{
+    font-size: 100px;
+    font-weight: 700;
+}
+
+.pnf-heading{
+    font-weight: normal;
+}
+
+.pnf-btn{
+    color: black;
+    text-decoration: none;
+    border: 1px solid black;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+.pnf-btn:active,
+.pnf-btn:hover{
+    background-color: #caf0f8;
+    color: #0d1b2a;
+    transition: all 600ms;
+}
+
+
+.register{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 70vh;
+    flex-direction: column;
+}
