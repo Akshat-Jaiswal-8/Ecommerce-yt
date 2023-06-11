@@ -1,8 +1,20 @@
 import React from "react";
 import { NavLink, Link } from "react-router-dom";
 import { GiShoppingBag } from "react-icons/gi";
+import { useAuth } from "../../context/auth.jsx";
+import { toast } from "react-toastify";
 
 function Header(props) {
+  const [auth, setAuth] = useAuth();
+  const logoutHandler = () => {
+    setAuth({
+      ...auth,
+      user: null,
+      token: "",
+    });
+    localStorage.removeItem("auth");
+    toast.success("Logout Successfully");
+  };
   return (
     <>
       <nav className="navbar navbar-expand-lg bg-body-tertiary">
@@ -33,16 +45,31 @@ function Header(props) {
                   Home
                 </NavLink>
               </li>
-              <li className="nav-item">
-                <NavLink to={"/register"} className="nav-link" href="#">
-                  Register
-                </NavLink>
-              </li>
-              <li className="nav-item">
-                <NavLink to={"/login"} className="nav-link" href="#">
-                  Login
-                </NavLink>
-              </li>{" "}
+              {!auth.user ? (
+                <>
+                  <li className="nav-item">
+                    <NavLink to={"/register"} className="nav-link" href="#">
+                      Register
+                    </NavLink>
+                  </li>
+                  <li className="nav-item">
+                    <NavLink to={"/login"} className="nav-link" href="#">
+                      Login
+                    </NavLink>
+                  </li>
+                </>
+              ) : (
+                <li className="nav-item">
+                  <NavLink
+                    onClick={logoutHandler}
+                    to={"/"}
+                    className="nav-link"
+                    href="#"
+                  >
+                    Logout
+                  </NavLink>
+                </li>
+              )}
               <li className="nav-item">
                 <NavLink to={"/cart"} className="nav-link" href="#">
                   Cart (0)
