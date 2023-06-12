@@ -8,11 +8,16 @@ import Policy from "./pages/Policy.jsx";
 import Error from "./pages/Error.jsx";
 import Login from "./pages/Auth/Login.jsx";
 import Register from "./pages/Auth/Register.jsx";
+import Dashboard from "./pages/user/Dashboard.jsx";
+import Private from "./components/routes/Private.jsx";
 
 function App(props) {
   return (
     <Routes>
       <Route path={"/"} element={<HomePage />} />
+      <Route path={"/dashboard"} element={<Private />}>
+        <Route path={""} element={<Dashboard />} />
+      </Route>
       <Route path={"/register"} element={<Register />} />
       <Route path={"/login"} element={<Login />} />
       <Route path={"/about"} element={<About />} />
@@ -22,5 +27,6 @@ function App(props) {
     </Routes>
   );
 }
+// 3:16:42
 
 export default App;
