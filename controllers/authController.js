@@ -6,7 +6,7 @@ import express from "express";
 
 export const registerController = async (req, res) => {
   try {
-    const { name, email, password, phone, address } = req.body;
+    const { name, email, password, phone, address, question } = req.body;
     if (!name) {
       return res.send({ message: "Name is Required." });
     }
@@ -21,6 +21,9 @@ export const registerController = async (req, res) => {
     }
     if (!address) {
       return res.send({ message: "address is Required." });
+    }
+    if (!question) {
+      return res.send({ message: "answer is Required." });
     }
 
     // checking user
@@ -44,6 +47,7 @@ export const registerController = async (req, res) => {
       password: hashedPassword,
       phone,
       address,
+      question,
     }).save();
 
     res.status(201).send({
@@ -115,6 +119,50 @@ export const loginController = async (req, res) => {
     res.status(500).send({
       success: false,
       message: "Login Failed",
+      error,
+    });
+  }
+};
+
+// FORGOT PASSWORD CONTROLLER
+
+export const forgotPasswordController = async (req, res) => {
+  try {
+    const { email, question, newPassword } = req.body;
+
+    if (!email) {
+      res.status(400).send({ message: "Email is required!" });
+    }
+    if (!question) {
+      res.status(400).send({ message: "question is required!" });
+    }
+    if (!newPassword) {
+      res.status(400).send({ message: "newPassword is required!" });
+    }
+
+    // check user
+    const user = await userModel.findOne({ email, question });
+
+    // validation
+    if (!user) {
+      return res.status(404).send({
+        success: false,
+        message: "Wrong Email or answer",
+      });
+    }
+
+    const hashed = await hashPassword(newPassword);
+
+    await userModel.findByIdAndUpdate(user._id, { password: hashed });
+    res.status(200).send({
+      success: true,
+      message: "Password Reset Successfully",
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: "Something went wrong",
       error,
     });
   }

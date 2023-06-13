@@ -10,6 +10,7 @@ function Register(props) {
   const [password, setPassword] = useState("");
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
+  const [question, setQuestion] = useState("");
   const navigate = useNavigate();
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -22,6 +23,7 @@ function Register(props) {
           password,
           phone,
           address,
+          question,
         }
       );
       if (res.data.success) {
@@ -92,6 +94,17 @@ function Register(props) {
               className="form-control"
               id="exampleInputPassword1"
               placeholder="Enter your Address"
+              required
+            />
+          </div>
+          <div className="mb-3">
+            <input
+              value={question}
+              type="text"
+              onChange={(e) => setQuestion(e.target.value)}
+              className="form-control"
+              id="exampleInputPassword1"
+              placeholder="What is Your Best Friend name"
               required
             />
           </div>

@@ -62,6 +62,13 @@ function Register(props) {
             />
           </div>
 
+          <button
+            type={"button"}
+            className={"m-3 btn btn-primary"}
+            onClick={() => navigate("/forgot-password")}
+          >
+            Forgot Password
+          </button>
           <button type="submit" className="btn btn-primary">
             Submit
           </button>
