@@ -11,13 +11,18 @@ import Register from "./pages/Auth/Register.jsx";
 import Dashboard from "./pages/user/Dashboard.jsx";
 import Private from "./components/routes/Private.jsx";
 import ForgotPassword from "./pages/Auth/ForgotPassword.jsx";
+import AdminRoute from "./components/routes/AdminRoute.jsx";
+import AdminDashboard from "./pages/admin/AdminDashboard.jsx";
 
 function App(props) {
   return (
     <Routes>
       <Route path={"/"} element={<HomePage />} />
       <Route path={"/dashboard"} element={<Private />}>
-        <Route path={""} element={<Dashboard />} />
+        <Route path={"user"} element={<Dashboard />} />
+      </Route>
+      <Route path={"/dashboard"} element={<AdminRoute />}>
+        <Route path={"admin"} element={<AdminDashboard />} />
       </Route>
       <Route path={"/register"} element={<Register />} />
       <Route path={"/login"} element={<Login />} />
