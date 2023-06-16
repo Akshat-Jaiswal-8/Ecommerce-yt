@@ -1,5 +1,4 @@
 import React from "react";
-import Layout from "./components/layout/Layout.jsx";
 import { Route, Routes } from "react-router-dom";
 import HomePage from "./pages/HomePage.jsx";
 import About from "./pages/About.jsx";
@@ -13,16 +12,26 @@ import Private from "./components/routes/Private.jsx";
 import ForgotPassword from "./pages/Auth/ForgotPassword.jsx";
 import AdminRoute from "./components/routes/AdminRoute.jsx";
 import AdminDashboard from "./pages/admin/AdminDashboard.jsx";
+import CreateCategory from "./pages/admin/CreateCategory.jsx";
+import CreateProduct from "./pages/admin/createProduct.jsx";
+import Users from "./pages/admin/Users.jsx";
+import Profile from "./pages/user/Profile.jsx";
+import Orders from "./pages/user/Orders.jsx";
 
-function App(props) {
+function App() {
   return (
     <Routes>
       <Route path={"/"} element={<HomePage />} />
       <Route path={"/dashboard"} element={<Private />}>
         <Route path={"user"} element={<Dashboard />} />
+        <Route path={"user/profile"} element={<Profile />} />
+        <Route path={"user/orders"} element={<Orders />} />
       </Route>
       <Route path={"/dashboard"} element={<AdminRoute />}>
         <Route path={"admin"} element={<AdminDashboard />} />
+        <Route path={"admin/create-category"} element={<CreateCategory />} />
+        <Route path={"admin/create-product"} element={<CreateProduct />} />
+        <Route path={"admin/users"} element={<Users />} />
       </Route>
       <Route path={"/register"} element={<Register />} />
       <Route path={"/login"} element={<Login />} />

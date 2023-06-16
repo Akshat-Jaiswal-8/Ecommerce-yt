@@ -1,10 +1,7 @@
 import React from "react";
 import Layout from "../../components/layout/Layout.jsx";
-import { useAuth } from "../../context/auth.jsx";
 import UserMenu from "../../components/layout/UserMenu.jsx";
-
-function Dashboard() {
-  const [auth] = useAuth();
+function Profile() {
   return (
     <Layout>
       <div className={"container-fluid m-3 p-3"}>
@@ -13,11 +10,7 @@ function Dashboard() {
             <UserMenu />
           </div>
           <div className={"col-md-9"}>
-            <div className={"card w-75 p-3"}>
-              <h1>User Name : {auth?.user?.name}</h1>
-              <h1>User Email : {auth?.user?.email}</h1>
-              <h1>User Contact: {auth?.user?.phone}</h1>
-            </div>
+            <h1>Your Orders</h1>
           </div>
         </div>
       </div>
@@ -25,6 +18,4 @@ function Dashboard() {
   );
 }
 
-//4:09:40
-
-export default Dashboard;
+export default Profile;

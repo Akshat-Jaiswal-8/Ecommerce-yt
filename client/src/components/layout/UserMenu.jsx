@@ -1,31 +1,25 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-function AdminMenu() {
+function UserMenu() {
   return (
     <div className={"text-center"}>
       <div className="list-group">
         <NavLink
           className="list-group-item list-group-item-action"
-          to={"/dashboard/admin/create-category"}
+          to={"/dashboard/user/orders"}
         >
-          Create Category
+          Orders
         </NavLink>
         <NavLink
           className="list-group-item list-group-item-action"
-          to={"/dashboard/admin/create-product"}
+          to={"/dashboard/user/profile"}
         >
-          Create Product
-        </NavLink>
-        <NavLink
-          className="list-group-item list-group-item-action"
-          to={"/dashboard/admin/users"}
-        >
-          Users
+          Profile
         </NavLink>
       </div>
     </div>
   );
 }
 
-export default AdminMenu;
+export default UserMenu;
