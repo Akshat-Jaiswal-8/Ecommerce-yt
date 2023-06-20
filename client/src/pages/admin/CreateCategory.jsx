@@ -39,8 +39,8 @@ function CreateCategory() {
       const { data } = await axios.get(
         "http://localhost:8080/api/v1/category/get-category"
       );
-      if (data.success) {
-        setCategories(data.category);
+      if (data?.success) {
+        setCategories(data?.category);
       }
     } catch (e) {
       console.log(e);
@@ -79,7 +79,7 @@ function CreateCategory() {
         `http://localhost:8080/api/v1/category/delete-category/${pId}`
       );
       if (data.success) {
-        toast.success(`category deleted successfully`);
+        toast.success(`category  deleted successfully`);
         await getAllCategories();
       }
     } catch (error) {
